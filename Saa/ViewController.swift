@@ -13,6 +13,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
 
+    var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,6 +23,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+
+        label.center = CGPoint(x: 160, y: 285)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+    
+        self.view.addSubview(label)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,9 +45,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         let longitude = userLocation.coordinate.longitude
         
-        print(latitude)
-        
-        print(longitude)
+        label.text = "Your latitude is " + String(latitude) +  " and longitude is " + String(longitude)
     }
 
 
