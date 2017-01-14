@@ -22,7 +22,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
 
         label.center = CGPoint(x: 160, y: 285)
         label.textAlignment = .center
@@ -36,6 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations)
         
@@ -46,6 +48,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let longitude = userLocation.coordinate.longitude
         
         label.text = "Your latitude is " + String(latitude) +  " and longitude is " + String(longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 
 
