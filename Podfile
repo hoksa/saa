@@ -6,5 +6,6 @@ target 'Saa' do
   use_frameworks!
 
   # Pods for Saa
-
+  pod 'Alamofire', '~> 4.0'
+  
 end

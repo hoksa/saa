@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74EF840F4B054D5156D112B5 /* Pods_Saa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCDB899C2760BE51E46B8625 /* Pods_Saa.framework */; };
 		E76515F31E29AB9200F75273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76515F21E29AB9200F75273 /* AppDelegate.swift */; };
 		E76515F51E29AB9200F75273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76515F41E29AB9200F75273 /* ViewController.swift */; };
 		E76515F81E29AB9200F75273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E76515F61E29AB9200F75273 /* Main.storyboard */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		419493E678CDD14B9BF6C919 /* Pods-Saa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Saa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Saa/Pods-Saa.debug.xcconfig"; sourceTree = "<group>"; };
+		6EC3B77D2D6CF9AFE57F9179 /* Pods-Saa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Saa.release.xcconfig"; path = "Pods/Target Support Files/Pods-Saa/Pods-Saa.release.xcconfig"; sourceTree = "<group>"; };
+		CCDB899C2760BE51E46B8625 /* Pods_Saa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Saa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76515EF1E29AB9200F75273 /* Saa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Saa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76515F21E29AB9200F75273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E76515F41E29AB9200F75273 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,18 +38,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				E76516061E29BCA500F75273 /* CoreLocation.framework in Frameworks */,
+				74EF840F4B054D5156D112B5 /* Pods_Saa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BBDEB262D3F36B202B2EDB25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				419493E678CDD14B9BF6C919 /* Pods-Saa.debug.xcconfig */,
+				6EC3B77D2D6CF9AFE57F9179 /* Pods-Saa.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E76515E61E29AB9200F75273 = {
 			isa = PBXGroup;
 			children = (
 				E76515F11E29AB9200F75273 /* Saa */,
 				E76515F01E29AB9200F75273 /* Products */,
 				E76516041E29BCA500F75273 /* Frameworks */,
+				BBDEB262D3F36B202B2EDB25 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				E76516051E29BCA500F75273 /* CoreLocation.framework */,
+				CCDB899C2760BE51E46B8625 /* Pods_Saa.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -86,9 +102,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E76516011E29AB9200F75273 /* Build configuration list for PBXNativeTarget "Saa" */;
 			buildPhases = (
+				0E55106DC86021E39E238E51 /* [CP] Check Pods Manifest.lock */,
 				E76515EB1E29AB9200F75273 /* Sources */,
 				E76515EC1E29AB9200F75273 /* Frameworks */,
 				E76515ED1E29AB9200F75273 /* Resources */,
+				E87857FABB5944C9FE5B05BD /* [CP] Embed Pods Frameworks */,
+				FE4C124B41E7D8AD36F0956C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -146,6 +165,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E55106DC86021E39E238E51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E87857FABB5944C9FE5B05BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Saa/Pods-Saa-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE4C124B41E7D8AD36F0956C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Saa/Pods-Saa-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E76515EB1E29AB9200F75273 /* Sources */ = {
@@ -273,6 +340,7 @@
 		};
 		E76516021E29AB9200F75273 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 419493E678CDD14B9BF6C919 /* Pods-Saa.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SPX6C8HWR8;
@@ -286,6 +354,7 @@
 		};
 		E76516031E29AB9200F75273 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EC3B77D2D6CF9AFE57F9179 /* Pods-Saa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SPX6C8HWR8;
