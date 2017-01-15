@@ -18,6 +18,7 @@ DerivedData/
 xcuserdata/
 Saa.xcodeproj/xcuserdata/
 Saa.xcodeproj/project.xcworkspace/xcuserdata/
+Saa/Config.swift
 
 ## Other
 *.moved-aside
