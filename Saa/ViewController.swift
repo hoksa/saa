@@ -39,8 +39,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
-        
         let userLocation: CLLocation = locations[0]
         
         let latitude = userLocation.coordinate.latitude
@@ -48,6 +46,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let longitude = userLocation.coordinate.longitude
         
         label.text = "Your latitude is " + String(latitude) +  " and longitude is " + String(longitude)
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&appid=" + Api.key)!
+        
+        let task = session.dataTask(with: url, completionHandler: {
+            (data, response, error) in
+            
+            if error != nil {
+                
+                print(error!.localizedDescription)
+                
+            } else {
+                
+                do {
+                    
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
+                    {
+                        
+                        print(json)
+                        
+                    }
+                    
+                } catch {
+                    
+                    print("error in JSONSerialization")
+                    
+                }
+                
+                
+            }
+            
+        })
+        task.resume()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
