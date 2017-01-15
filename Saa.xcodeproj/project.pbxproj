@@ -13,6 +13,7 @@
 		E76515FA1E29AB9200F75273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E76515F91E29AB9200F75273 /* Assets.xcassets */; };
 		E76515FD1E29AB9200F75273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E76515FB1E29AB9200F75273 /* LaunchScreen.storyboard */; };
 		E76516061E29BCA500F75273 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76516051E29BCA500F75273 /* CoreLocation.framework */; };
+		E76516081E2B17F300F75273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76516071E2B17F300F75273 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E76515FC1E29AB9200F75273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E76515FE1E29AB9200F75273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E76516051E29BCA500F75273 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E76516071E2B17F300F75273 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				E76515F21E29AB9200F75273 /* AppDelegate.swift */,
 				E76515F41E29AB9200F75273 /* ViewController.swift */,
+				E76516071E2B17F300F75273 /* Config.swift */,
 				E76515F61E29AB9200F75273 /* Main.storyboard */,
 				E76515F91E29AB9200F75273 /* Assets.xcassets */,
 				E76515FB1E29AB9200F75273 /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 			files = (
 				E76515F51E29AB9200F75273 /* ViewController.swift in Sources */,
 				E76515F31E29AB9200F75273 /* AppDelegate.swift in Sources */,
+				E76516081E2B17F300F75273 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
