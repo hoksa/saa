@@ -49,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&appid=" + Api.key)!
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&units=metric&appid=" + Api.key)!
         
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
