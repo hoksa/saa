@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -47,39 +48,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         label.text = "Your latitude is " + String(latitude) +  " and longitude is " + String(longitude)
         
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&units=metric&appid=" + Api.key)!
+        let apiEndpoint: String = "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&units=metric&appid=" + Api.key
         
-        let task = session.dataTask(with: url, completionHandler: {
-            (data, response, error) in
-            
-            if error != nil {
-                
-                print(error!.localizedDescription)
-                
-            } else {
-                
-                do {
-                    
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
-                    {
-                        
-                        print(json)
-                        
-                    }
-                    
-                } catch {
-                    
-                    print("error in JSONSerialization")
-                    
+        Alamofire.request(apiEndpoint)
+            .responseJSON { response in
+                guard response.result.error == nil else {
+                    print(response.result.error!)
+                    return
                 }
                 
+                guard let json = response.result.value as? [String: Any] else {
+                    print(response.result.error!)
+                    return
+                }
                 
+                print(json)
             }
-            
-        })
-        task.resume()
         
     }
     
