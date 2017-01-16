@@ -14,7 +14,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
 
-    var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    var cenLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    
+    var fahLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +27,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
 
-        label.center = CGPoint(x: 160, y: 285)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-    
-        self.view.addSubview(label)
+        cenLabel.center = CGPoint(x: 160, y: 285)
+        cenLabel.textAlignment = .center
+
+        fahLabel.center = CGPoint(x: 160, y: 306)
+        fahLabel.textAlignment = .center
+        
+        self.view.addSubview(cenLabel)
+        self.view.addSubview(fahLabel)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,10 +69,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     }
                 
                 print(json)
-                print(main)
-                print(tempCen)
                 
-                self.label.text = String(tempCen) + "°C"
+                let tempFah: Int = (tempCen * 9/5) + 32
+                
+                self.cenLabel.text = String(tempCen) + "°C"
+                self.fahLabel.text = String(tempFah) + "°F"
 
             }
         
