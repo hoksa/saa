@@ -46,8 +46,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         let longitude = userLocation.coordinate.longitude
         
-        label.text = "Your latitude is " + String(latitude) +  " and longitude is " + String(longitude)
-        
         let apiEndpoint: String = "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&units=metric&appid=" + Api.key
         
         Alamofire.request(apiEndpoint)
@@ -57,12 +55,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     return
                 }
                 
-                guard let json = response.result.value as? [String: Any] else {
-                    print(response.result.error!)
-                    return
-                }
+                guard let json = response.result.value as? [String: Any],
+                    let main = json["main"] as? [String: Any],
+                    let tempCen = main["temp"] as? Int
+                    else {
+                        print(response.result.error!)
+                        return
+                    }
                 
                 print(json)
+                print(main)
+                print(tempCen)
+                
+                self.label.text = String(tempCen) + "°C"
+
             }
         
     }
