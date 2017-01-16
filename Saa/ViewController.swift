@@ -31,10 +31,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestLocation()
 
         cenLabel.textAlignment = .center
+        cenLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
 
         fahLabel.textAlignment = .center
+        fahLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
 
         locLabel.textAlignment = .center
+        locLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.callout)
+        locLabel.textColor = UIColor.lightGray
         
         self.view.addSubview(cenLabel)
         self.view.addSubview(fahLabel)
@@ -44,21 +48,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             make.top.equalTo(self.view).offset(100)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
-            make.height.equalTo(21)
         }
         
         fahLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(cenLabel.snp.bottom)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
-            make.height.equalTo(21)
         }
 
         locLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(fahLabel.snp.bottom)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
-            make.height.equalTo(21)
         }
     }
 
