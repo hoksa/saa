@@ -17,6 +17,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var cenLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
     
     var fahLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+
+    var locLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +34,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
         fahLabel.center = CGPoint(x: 160, y: 306)
         fahLabel.textAlignment = .center
+
+        locLabel.center = CGPoint(x: 160, y: 327)
+        locLabel.textAlignment = .center
         
         self.view.addSubview(cenLabel)
         self.view.addSubview(fahLabel)
+        self.view.addSubview(locLabel)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +68,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 guard let json = response.result.value as? [String: Any],
                     let main = json["main"] as? [String: Any],
-                    let tempCen = main["temp"] as? Int
+                    let tempCen = main["temp"] as? Int,
+                    let location = json["name"] as? String
                     else {
                         print(response.result.error!)
                         return
@@ -74,6 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 self.cenLabel.text = String(tempCen) + "°C"
                 self.fahLabel.text = String(tempFah) + "°F"
+                self.locLabel.text = location
 
             }
         
