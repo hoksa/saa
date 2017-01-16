@@ -9,16 +9,17 @@
 import UIKit
 import CoreLocation
 import Alamofire
+import SnapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
 
-    var cenLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    var cenLabel = UILabel()
     
-    var fahLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    var fahLabel = UILabel()
 
-    var locLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    var locLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +30,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
 
-        cenLabel.center = CGPoint(x: 160, y: 285)
         cenLabel.textAlignment = .center
 
-        fahLabel.center = CGPoint(x: 160, y: 306)
         fahLabel.textAlignment = .center
 
-        locLabel.center = CGPoint(x: 160, y: 327)
         locLabel.textAlignment = .center
         
         self.view.addSubview(cenLabel)
         self.view.addSubview(fahLabel)
         self.view.addSubview(locLabel)
+        
+        cenLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.view).offset(100)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+            make.height.equalTo(21)
+        }
+        
+        fahLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(cenLabel.snp.bottom)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+            make.height.equalTo(21)
+        }
+
+        locLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(fahLabel.snp.bottom)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+            make.height.equalTo(21)
+        }
     }
 
     override func didReceiveMemoryWarning() {
