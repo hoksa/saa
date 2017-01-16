@@ -7,5 +7,6 @@ target 'Saa' do
 
   # Pods for Saa
   pod 'Alamofire', '~> 4.0'
-  
+  pod 'SnapKit', '~> 3.1.2'
+
 end
