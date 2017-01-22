@@ -14,6 +14,8 @@ import SnapKit
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
+    
+    let savedWeatherData = UserDefaults.standard
 
     var cenLabel = UILabel()
     
@@ -39,6 +41,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locLabel.textAlignment = .center
         locLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.callout)
         locLabel.textColor = UIColor.lightGray
+ 
+        if let tempCen = savedWeatherData.object(forKey: "tempCen") as? Int {
+            cenLabel.text = String(tempCen) + "°C"
+        }
+
+        if let tempFah = savedWeatherData.object(forKey: "tempFah") as? Int {
+            fahLabel.text = String(tempFah) + "°F"
+        }
+
+        if let location = savedWeatherData.object(forKey: "location") as? String {
+            locLabel.text = location
+        }
         
         self.view.addSubview(cenLabel)
         self.view.addSubview(fahLabel)
@@ -94,15 +108,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         print(response.result.error!)
                         return
                     }
-                
-                print(json)
-                
+                                
                 let tempFah: Int = (tempCen * 9/5) + 32
                 
                 self.cenLabel.text = String(tempCen) + "°C"
                 self.fahLabel.text = String(tempFah) + "°F"
                 self.locLabel.text = location
-
+                                
+                self.savedWeatherData.set(tempCen, forKey: "tempCen")
+                self.savedWeatherData.set(tempFah, forKey: "tempFah")
+                self.savedWeatherData.set(location, forKey: "location")
             }
         
     }
