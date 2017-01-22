@@ -25,7 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        restorationIdentifier = "ViewController"
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -108,7 +109,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         print(response.result.error!)
                         return
                     }
-                                
+                
                 let tempFah: Int = (tempCen * 9/5) + 32
                 
                 self.cenLabel.text = String(tempCen) + "°C"
