@@ -33,14 +33,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
 
-        cenLabel.textAlignment = .center
-        cenLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        cenLabel.font = UIFont.systemFont(ofSize: 72, weight: UIFontWeightBlack)
 
-        fahLabel.textAlignment = .center
-        fahLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        fahLabel.font = UIFont.systemFont(ofSize: 72, weight: UIFontWeightBlack)
 
-        locLabel.textAlignment = .center
-        locLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.callout)
+        locLabel.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightMedium)
         locLabel.textColor = UIColor.lightGray
  
         if let tempCen = savedWeatherData.object(forKey: "tempCen") as? Int {
@@ -60,19 +57,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.view.addSubview(locLabel)
         
         cenLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(100)
+            make.top.equalTo(locLabel.snp.bottom)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
         }
         
         fahLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(cenLabel.snp.bottom)
+            make.top.equalTo(cenLabel.snp.bottom).offset(-18)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
         }
 
         locLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(fahLabel.snp.bottom)
+            make.top.equalTo(self.view).offset(40)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
         }
