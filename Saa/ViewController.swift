@@ -23,6 +23,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     var locLabel = UILabel()
     
+    var descLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         fahLabel.font = UIFont.systemFont(ofSize: 72, weight: UIFontWeightBlack)
 
         locLabel.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightMedium)
-        locLabel.textColor = UIColor.lightGray
+        
+        descLabel.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightLight)
+        
  
         if let tempCen = savedWeatherData.object(forKey: "tempCen") as? Int {
             cenLabel.text = String(tempCen) + "°C"
@@ -51,25 +55,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if let location = savedWeatherData.object(forKey: "location") as? String {
             locLabel.text = location
         }
+
+        if let description = savedWeatherData.object(forKey: "description") as? String {
+            descLabel.text = description
+        }
         
         self.view.addSubview(cenLabel)
         self.view.addSubview(fahLabel)
         self.view.addSubview(locLabel)
+        self.view.addSubview(descLabel)
         
-        cenLabel.snp.makeConstraints { (make) -> Void in
+        locLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.view).offset(40)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+        }
+        
+        descLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(locLabel.snp.bottom)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+        }
+
+        cenLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(descLabel.snp.bottom)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
         }
         
         fahLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(cenLabel.snp.bottom).offset(-18)
-            make.left.equalTo(self.view).offset(20)
-            make.right.equalTo(self.view).offset(-20)
-        }
-
-        locLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(40)
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
         }
@@ -91,6 +106,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         let apiEndpoint: String = "http://api.openweathermap.org/data/2.5/weather?lat=" + String(latitude) + "&lon=" + String(longitude) + "&units=metric&appid=" + Api.key
         
+        print(apiEndpoint)
+        
         Alamofire.request(apiEndpoint)
             .responseJSON { response in
                 guard response.result.error == nil else {
@@ -101,7 +118,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 guard let json = response.result.value as? [String: Any],
                     let main = json["main"] as? [String: Any],
                     let tempCen = main["temp"] as? Int,
-                    let location = json["name"] as? String
+                    let location = json["name"] as? String,
+                    let weather = json["weather"] as? [AnyObject],
+                    let description = weather[0]["main"] as? String
                     else {
                         print(response.result.error!)
                         return
@@ -109,13 +128,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 let tempFah: Int = (tempCen * 9/5) + 32
                 
+                self.locLabel.text = location
+                self.descLabel.text = description
                 self.cenLabel.text = String(tempCen) + "°C"
                 self.fahLabel.text = String(tempFah) + "°F"
-                self.locLabel.text = location
-                                
+                
+                self.savedWeatherData.set(location, forKey: "location")
+                self.savedWeatherData.set(description, forKey: "description")
                 self.savedWeatherData.set(tempCen, forKey: "tempCen")
                 self.savedWeatherData.set(tempFah, forKey: "tempFah")
-                self.savedWeatherData.set(location, forKey: "location")
             }
         
     }
